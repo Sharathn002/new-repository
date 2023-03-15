@@ -10,7 +10,7 @@ pipeline {
       steps {
         sh 'pip install json'
         sh 'pip install requests'
-        sh 'pip install datetime
+        sh 'pip install datetime'
         sh 'python3 silence.py'
       }
     }

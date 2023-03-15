@@ -1,0 +1,20 @@
+[
+  {
+    "list_of_regions_available":["US South","EU DE","EU GB","JP OSA","JP TOK","US East","AU SYD","CA TOR","BR SAO"],
+    "region":"JP TOK",
+    "api_token": "3e91771e-40d2-42cd-96ac-ebe08462c96c",
+    "duration_in_hours": 1.5,
+    "name": "silencing 1",
+    "scope": "kubernetes.cluster.name in (\"webapCluster/cfvdf6ef0lb6gpb1puig\")"
+    
+  },
+  {
+    "list_of_region_available":["US South","EU DE","EU GB","JP OSA","JP TOK","US East","AU SYD","CA TOR","BR SAO"],
+    "region":"JP TOK",
+    "api_token": "3e91771e-40d2-42cd-96ac-ebe08462c96c",
+    "duration_in_hours": 1.5,
+    "name": "silencing 2",
+    "scope": "kubernetes.cluster.name in (\"webapCluster/cfvdf6ef0lb6gpb1puig\")"
+    
+  }
+]

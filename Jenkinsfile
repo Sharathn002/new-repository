@@ -8,6 +8,7 @@ pipeline {
     }
     stage('hello') {
       steps {
+        sh 'pip install requests'
         sh 'python3 add.py'
       }
     }

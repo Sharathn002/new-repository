@@ -8,7 +8,7 @@ pipeline {
     }
     stage('hello') {
       steps {
-        sh 'python3 silence.py'
+        sh 'python3 silencing.py'
       }
     }
   }

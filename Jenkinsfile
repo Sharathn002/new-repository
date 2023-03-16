@@ -11,9 +11,19 @@ pipeline {
         sh 'pip --version'
       }
     }
-    stage('hello') {
+    stage('silencing alert') {
       steps {
         sh 'python3 Silencing.py'
+      }
+    }
+    stage('sleep') {
+      steps {
+        sleep time: 600, unit: 'SECONDS' 
+      }
+    }
+    stage('disable silencing') {
+      steps {
+        sh 'python3 disable_silence.py'
       }
     }
   }

@@ -1,14 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('version') {
+    stage('version of python') {
       steps {
         sh 'python3 --version'
       }
     }
+    stage('version of pip') {
+      steps {
+        sh 'pip --version'
+      }
+    }
     stage('hello') {
       steps {
-        sh 'python3 add.py'
+        sh 'python3 silencing.py'
       }
     }
   }

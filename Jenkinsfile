@@ -24,7 +24,7 @@ pipeline {
   }
   post {
         always {
-            stage('disable silencing') {
+            stage('disable') {
                 steps {
                   sh 'python3 disable_silence.py'                
                 }

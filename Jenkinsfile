@@ -18,7 +18,7 @@ pipeline {
     }
     stage('sleep') {
       steps {
-        sleep time: 600, unit: 'SECONDS' 
+        sleep time: 60, unit: 'SECONDS' 
       }
     }
     stage('disable silencing') {

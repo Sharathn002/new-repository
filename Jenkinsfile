@@ -15,6 +15,15 @@ pipeline {
       steps {
         sh 'python3 crash.py'
       }
+      post {
+        always {
+           stage('disable silencing') {
+            steps {
+              sh 'python3 disable_silence.py'
+                  }
+                }
+              }
+          }
     }
     stage('disable silencing') {
       steps {

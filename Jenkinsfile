@@ -22,13 +22,5 @@ pipeline {
       }
     }
   }
-  post {
-        always {
-            stage('disable') {
-                steps {
-                  sh 'python3 disable_silence.py'                
-                }
-            }
-        }
-    }
+  
 }

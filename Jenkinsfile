@@ -47,7 +47,7 @@ pipeline {
   stages {
     stage('Run Python Script') {
       steps {
-        sh "python my_script.py ${params.NAME} ${params.FLAG} ${params.CHOICE}"
+        sh "python3 my_script.py ${params.NAME} ${params.FLAG} ${params.CHOICE}"
       }
     }
   }

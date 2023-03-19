@@ -63,12 +63,12 @@ def main():
 #     json_data = json.load(json_file)
     cluster_name=sys.argv[1]
     region=sys.argv[2]
-    API_token=sys.argv[3]
+    api_token=sys.argv[3]
     duration_in_hours=sys.argv[4]
 
 #     silencing_alert(curr_time_in_millisec,json_data)
     
-    silencing_alert(curr_time_in_millisec,cluster_name,region,API_token,duration_in_hours)
+    silencing_alert(curr_time_in_millisec,cluster_name,region,api_token,duration_in_hours)
 if __name__=='__main__':
     main()
 

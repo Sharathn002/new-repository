@@ -4,7 +4,7 @@ pipeline {
     string(name: 'cluster_name', defaultValue: 'None', description: 'Enter the cluster name')
     string(name: 'region', defaultValue: 'None', description: 'Enter the region name in"jp tok" formate')
     string(name: 'API_token', defaultValue: 'None', description: 'Enter the api token of that region')
-    int(name: 'duration_in_hours', defaultValue: 1.5, description: 'Enter the duration for the silencing')
+    string(name: 'duration_in_hours', defaultValue: 1.5, description: 'Enter the duration for the silencing')
   }
   stages {
     stage('silencing alert') {

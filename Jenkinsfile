@@ -21,7 +21,7 @@ pipeline {
               }
           }
     }
-    stage('disable silencing') {
+    stage('deleting silencing rule') {
       steps {
         sh 'python3 deleting_silencing_rule.py'
       }

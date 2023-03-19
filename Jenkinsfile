@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('silencing alert') {
       steps {
-        sh 'python3 Silencing.py'
+        sh 'python3 silencing_rule.py'
       }
     }
     stage('sleep') {
@@ -17,13 +17,13 @@ pipeline {
       }
       post {
         always {
-              sh 'python3 disable_silence.py'
+              sh 'python3 deleting_silencing_rule.py'
               }
           }
     }
     stage('disable silencing') {
       steps {
-        sh 'python3 disable_silence.py'
+        sh 'python3 deleting_silencing_rule.py'
       }
     }
   }

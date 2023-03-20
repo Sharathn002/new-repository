@@ -1,7 +1,6 @@
 import requests
 import json
 from datetime import datetime
-import sys
 
 #this is the function to return the list of the notification_channel_ids present
 def notification_channel_id(api_token,url):
@@ -17,14 +16,11 @@ def silencing_alert(curr_time_in_millisec,json_data):
         api_token=dict["api_token"]
 
         #This is the endpoint for the silencing
-        # url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
-        url='https://jp-tok.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
 
         #this is the endpoint for all the alerts present
-        # alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
-        alert_url='https://jp-tok.monitoring.cloud.ibm.com/api/alerts'
-
-                # print(url)
+        alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
+        # print(url)
         # print(api_token)
         silence_config = {
             "durationInSec": dict["duration_in_hours"]*60*60,
@@ -55,17 +51,8 @@ def main():
     curr_time_in_millisec = now.timestamp() * 1000
 
     #converting the json file into python objects
-    # json_file=open('template.json','r')
-    # json_data = json.load(json_file)
-    json_data=[
-    {
-        "list_of_regions_available":["US South","EU DE","EU GB","JP OSA","JP TOK","US East","AU SYD","CA TOR","BR SAO"],
-        "region":sys.argv[1],
-        "api_token": sys.argv[2],
-        "cluster_name":sys.argv[3],
-        "duration_in_hours": 1.5
-    }
-    ]
+    json_file=open('template.json','r')
+    json_data = json.load(json_file)
 
     silencing_alert(curr_time_in_millisec,json_data)
     

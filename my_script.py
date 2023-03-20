@@ -5,5 +5,7 @@ flag = sys.argv[2]
 choice = sys.argv[3]
 
 print(f"Hello, {name}")
+print(type(name))
 print(f"Flag is {flag}")
 print(f"Selected option is {choice}")
+print(type(choice))

@@ -39,15 +39,17 @@ pipeline {
   agent any
   
   parameters {
-    string(name: 'NAME', defaultValue: 'John Doe', description: 'Enter your name')
-    booleanParam(name: 'FLAG', defaultValue: true, description: 'Select flag')
-    choice(name: 'CHOICE', choices: ['Option A', 'Option B', 'Option C'], description: 'Select an option')
+    string(name: 'region', defaultValue: 'Jp tok', description: 'Enter the region')
+    string(name: 'api_token', defaultValue: '3e91771e-40d2-42cd-96ac-ebe08462c96c', description: 'Enter the api token')
+    string(name: 'cluster_name', defaultValue: 'webapCluster/cfvdf6ef0lb6gpb1puig', description: 'Enter the cluster name')
+//     booleanParam(name: 'FLAG', defaultValue: true, description: 'Select flag')
+//     choice(name: 'CHOICE', choices: ['Option A', 'Option B', 'Option C'], description: 'Select an option')
   }
 
   stages {
     stage('Run Python Script') {
       steps {
-        sh "python3 my_script.py ${params.NAME} ${params.FLAG} ${params.CHOICE}"
+        sh "python3 my_script.py ${params.region} ${params.api_token} ${params.cluster_name}"
       }
     }
   }

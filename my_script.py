@@ -1,14 +1,3 @@
-# import sys
-
-# name = sys.argv[1]
-# flag = sys.argv[2]
-# choice = sys.argv[3]
-
-# print(f"Hello, {name}")
-# print(type(name))
-# print(f"Flag is {flag}")
-# print(f"Selected option is {choice}")
-# print(type(choice))
 import requests
 import json
 from datetime import datetime
@@ -28,11 +17,14 @@ def silencing_alert(curr_time_in_millisec,json_data):
         api_token=dict["api_token"]
 
         #This is the endpoint for the silencing
-        url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        # url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        url='https://jp-tok.monitoring.cloud.ibm.com/api/v1/silencingRules'
 
         #this is the endpoint for all the alerts present
-        alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
-        # print(url)
+        # alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
+        alert_url='https://jp-tok.monitoring.cloud.ibm.com/api/alerts'
+
+                # print(url)
         # print(api_token)
         silence_config = {
             "durationInSec": dict["duration_in_hours"]*60*60,
@@ -79,8 +71,5 @@ def main():
     
 if __name__=='__main__':
     main()
-
-
-
 
 

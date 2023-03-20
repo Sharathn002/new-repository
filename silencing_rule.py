@@ -11,44 +11,40 @@ def notification_channel_id(api_token,url):
     return response.json()["alerts"][0]["notificationChannelIds"] 
 
 #This is the function to create the silencing
-# def silencing_alert(curr_time_in_millisec,json_data):
-def silencing_alert(curr_time_in_millisec,cluster_name,region,api_token,duration_in_hours):
+def silencing_alert(curr_time_in_millisec,json_data):
 
     for dict in json_data:
-#         api_token=dict["api_token"]
-    api_token=api_token
+        api_token=dict["api_token"]
 
         #This is the endpoint for the silencing
-#         url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
-    url='https://'+region.split(' ')[0].lower()+'-'+region.split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        # url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        url='https://jp-tok.monitoring.cloud.ibm.com/api/v1/silencingRules'
 
         #this is the endpoint for all the alerts present
-#         alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
-    alert_url='https://'+region.split(' ')[0].lower()+'-'+region.split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
-        # print(url)
+        # alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
+        alert_url='https://jp-tok.monitoring.cloud.ibm.com/api/alerts'
+
+                # print(url)
         # print(api_token)
-    silence_config = {
-#             "durationInSec": dict["duration_in_hours"]*60*60,
-        "durationInSec": duration_in_hours*60*60,
-        "enabled":True,
-#             "name": f'Kube patch upgrade for {dict["cluster_name"]}',
-        "name": f'Kube patch upgrade for {cluster_name}',
-        "notificationChannelIds": notification_channel_id(api_token,alert_url),
+        silence_config = {
+            "durationInSec": dict["duration_in_hours"]*60*60,
+            "enabled":True,
+            "name": f'Kube patch upgrade for {dict["cluster_name"]}',
+            "notificationChannelIds": notification_channel_id(api_token,alert_url),
             # "scope": "kubernetes.cluster.name in (\"webapCluster/cfvdf6ef0lb6gpb1puig\")",
-#             "scope":f'kubernetes.cluster.name in (\"{dict["cluster_name"]}\")',
-        "scope":f'kubernetes.cluster.name in (\"{cluster_name}\")',
-        "startTs": curr_time_in_millisec
-    }
+            "scope":f'kubernetes.cluster.name in (\"{dict["cluster_name"]}\")',
+            "startTs": curr_time_in_millisec
+        }
 
-    headers = {'Authorization': f'Bearer {api_token}', 'Content-Type': 'application/json'}
-    response = requests.post(url, headers=headers, data=json.dumps(silence_config))
+        headers = {'Authorization': f'Bearer {api_token}', 'Content-Type': 'application/json'}
+        response = requests.post(url, headers=headers, data=json.dumps(silence_config))
 
-    if response.status_code == 201:
-        silence_id = response.json()['id']
-        print(f'silencing created successfully with ID {silence_id}')
-    else:
-        error_message = response.json()['errors'][0]['message']
-        print(f'Error creating alert: {error_message}')
+        if response.status_code == 201:
+            silence_id = response.json()['id']
+            print(f'silencing created successfully with ID {silence_id}')
+        else:
+            error_message = response.json()['errors'][0]['message']
+            print(f'Error creating alert: {error_message}')
 
 
 def main():
@@ -59,16 +55,20 @@ def main():
     curr_time_in_millisec = now.timestamp() * 1000
 
     #converting the json file into python objects
-#     json_file=open('template.json','r')
-#     json_data = json.load(json_file)
-    cluster_name=sys.argv[1]
-    region=sys.argv[2]
-    api_token=sys.argv[3]
-    duration_in_hours=sys.argv[4]
+    # json_file=open('template.json','r')
+    # json_data = json.load(json_file)
+    json_data=[
+    {
+        "list_of_regions_available":["US South","EU DE","EU GB","JP OSA","JP TOK","US East","AU SYD","CA TOR","BR SAO"],
+        "region":sys.argv[1],
+        "api_token": sys.argv[2],
+        "cluster_name":sys.argv[3],
+        "duration_in_hours": 1.5
+    }
+    ]
 
-#     silencing_alert(curr_time_in_millisec,json_data)
+    silencing_alert(curr_time_in_millisec,json_data)
     
-    silencing_alert(curr_time_in_millisec,cluster_name,region,api_token,duration_in_hours)
 if __name__=='__main__':
     main()
 

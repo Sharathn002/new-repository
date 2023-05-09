@@ -1,7 +1,7 @@
 [
   {
-    "list_of_regions_available":["US South","EU DE","EU GB","CA TOR","BR SAO"],
     "region":"TOK_japannnnn",
+    "name" :"dharath",
     
     "api_token": "3e91771eebe08462c96c",
     "cluster_name":"webapCluster",

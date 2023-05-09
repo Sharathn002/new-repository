@@ -1,7 +1,8 @@
 [
   {
-    "region":"TOK_japannnnn",
+    
     "name" :"dharath",
+    "class" 23;
     
     "api_token": "3e91771eebe08462c96c",
     "cluster_name":"webapCluster",

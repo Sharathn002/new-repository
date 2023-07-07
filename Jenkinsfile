@@ -75,6 +75,7 @@ pipeline {
             steps {
                 script {
                 def output = sh(script: 'python3 generate_output.py', returnStdout: true).trim()
+                echo "Generated Output: ${output}"
                 sh '''
                     #!/bin/bash
                     echo "Generated Output: ${output}"

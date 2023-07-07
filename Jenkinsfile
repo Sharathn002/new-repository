@@ -76,9 +76,12 @@ pipeline {
                 script {
                 def output = sh(script: 'python3 generate_output.py', returnStdout: true).trim()
                 echo "Generated Output: ${output}"
+                 parameters {
+                      string(name: 'OUTPUT_PARAM', defaultValue: output, description: 'Generated output from Python script')
+                  }
                 sh '''
                     #!/bin/bash
-                    echo "Generated Output: ${output}"
+                    echo "Generated Output: ${params.OUTPUT_PARAM}"
                     current_time=$(date "+%H:%M:%S")
                 '''
                 }

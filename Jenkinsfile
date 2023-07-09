@@ -143,7 +143,7 @@ pipeline {
 
                     sh """
                         #!/bin/bash
-                        eecho "Generated Output: ${OUTPUT_PARAM}"
+                        echo "Generated Output: ${OUTPUT_PARAM}"
                     """
                 }
             }

@@ -142,7 +142,7 @@ pipeline {
 
                     sh """
                         #!/bin/bash
-                        echo 'Generated Output: \$OUTPUT_PARAM'
+                        echo 'Generated Output: $params.OUTPUT_PARAM'
                         current_time=\$(date "+%H:%M:%S")
                         echo "Current Time: \$current_time"
                     """

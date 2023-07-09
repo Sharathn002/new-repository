@@ -134,17 +134,16 @@ pipeline {
                 script {
                     def output = sh(script: 'python3 generate_output.py --TIMEOUT "$TIMEOUT"', returnStdout: true).trim()
                     echo "Generated Output: ${output}"
+                    env.OUTPUT_PARAM = output
 
                     // Define the output as a parameter
-                    parameters {
-                        string(name: 'OUTPUT_PARAM', defaultValue: output, description: 'Generated output from Python script')
-                    }
+                    // parameters {
+                    //     string(name: 'OUTPUT_PARAM', defaultValue: output, description: 'Generated output from Python script')
+                    // }
 
                     sh """
                         #!/bin/bash
-                        echo 'Generated Output: $OUTPUT_PARAM'
-                        current_time=\$(date "+%H:%M:%S")
-                        echo "Current Time: \$current_time"
+                        eecho "Generated Output: ${OUTPUT_PARAM}"
                     """
                 }
             }

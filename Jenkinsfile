@@ -123,7 +123,7 @@
 
 pipeline {
     parameters {
-        string(name: 'INCREMENT_TIME', defaultValue: '4 hours', description: 'Enter the increment time (e.g., 4 hours)')
+        string(name: 'TIMEOUT', defaultValue: '4h', description: 'Enter the time')
     }
     
     agent any
@@ -132,7 +132,7 @@ pipeline {
         stage('Print Current Time') {
             steps {
                 script {
-                    def output = sh(script: 'python3 generate_output.py', returnStdout: true).trim()
+                    def output = sh(script: 'python3 generate_output.py --TIMEOUT "$TIMEOUT"', returnStdout: true).trim()
                     echo "Generated Output: ${output}"
 
                     // Define the output as a parameter
